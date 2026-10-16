@@ -1,8 +1,78 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Budget iOS — Privacy Notice</title>
-<style>body{font-family:-apple-system,system-ui,sans-serif;max-width:40em;margin:48px auto;padding:0 24px;color:#222;line-height:1.5}</style></head>
-<body><h1>Budget iOS — Privacy Notice</h1>
-<p>Budget iOS is a personal finance application used by its author for his own accounts only. It is not distributed to the public.</p>
-<p>Account information obtained through Enable Banking (PSD2 account information service) is stored only on the user's own device (and optionally in the user's own iCloud private database). No data is transferred to any third party and no server operated by the author receives it.</p>
-<p>Access to bank accounts can be revoked at any time in the application («Подключённые счета → Отключить») or at the bank.</p>
-<p>Contact: korolovslava04@gmail.com</p></body></html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Бюджет — Политика конфиденциальности / Datenschutzerklärung</title>
+<style>body{font-family:-apple-system,system-ui,sans-serif;max-width:42em;margin:48px auto;padding:0 24px;color:#222;line-height:1.55}h1{font-size:1.6em}h2{font-size:1.2em;margin-top:1.6em}nav a{margin-right:1em}small{color:#666}table{border-collapse:collapse}td,th{border:1px solid #ddd;padding:6px 10px;text-align:left;vertical-align:top}</style></head>
+<body>
+<nav><a href="#ru">Русский</a><a href="#de">Deutsch</a><a href="terms.html">Условия использования</a></nav>
+
+<h1 id="ru">Политика конфиденциальности приложения «Бюджет»</h1>
+<p><small>Редакция от 16 октября 2026 г. Приложение находится в закрытом бета-тестировании (TestFlight).</small></p>
+
+<h2>Кто отвечает за данные</h2>
+<p>Korolov IT-Service, Inh. Viacheslav Korolov, Stegerwaldstraße 14, 51373 Leverkusen, Германия. E-mail: <a href="mailto:info@korolov-it-service.de">info@korolov-it-service.de</a>.</p>
+
+<h2>Главное</h2>
+<ul>
+<li>Твои финансовые данные (операции, бюджеты, долги, чаты с ассистентом, отчёты) хранятся <strong>на твоём iPhone</strong> и, если ты включил синхронизацию, в <strong>твоём личном iCloud</strong> (приватная база CloudKit, доступная только твоему Apple ID).</li>
+<li>На сервере приложения финансовых данных <strong>нет</strong>. Сервер нужен только для входа, ИИ-ассистента и подключения банков.</li>
+<li>Ничего не продаётся и не передаётся рекламным сетям. Аналитики и трекеров в приложении нет.</li>
+</ul>
+
+<h2>Что обрабатывает сервер приложения</h2>
+<p>Сервер (budget-api) размещён в Германии (netcup GmbH, Нюрнберг). Он хранит только:</p>
+<table>
+<tr><th>Данные</th><th>Зачем</th><th>Срок</th></tr>
+<tr><td>Идентификатор Apple ID (<code>sub</code>), e-mail (если ты разрешил его передать), план, дата регистрации</td><td>Вход через Sign in with Apple, учёт плана</td><td>Пока есть аккаунт</td></tr>
+<tr><td>Токены сессии (хеш), название устройства</td><td>Чтобы не входить каждый раз</td><td>До выхода или 90 дней без использования</td></tr>
+<tr><td>Счётчики запросов к ИИ: дата, модель, число токенов, стоимость</td><td>Лимиты и учёт расходов; <strong>содержимое запросов и ответов не сохраняется и не логируется</strong></td><td>Счётчики без привязки к человеку остаются после удаления аккаунта</td></tr>
+<tr><td>Идентификаторы банковских сессий и счетов Enable Banking, маскированный IBAN, название банка, срок согласия, число запросов к счёту за день</td><td>Подключение банков и соблюдение лимитов банков</td><td>Пока счёт подключён или до удаления аккаунта</td></tr>
+</table>
+<p>Технические журналы сервера содержат путь запроса, код ответа, время и идентификатор пользователя — без содержимого. Срок хранения журналов — до 30 дней.</p>
+
+<h2>ИИ-ассистент, отчёт, разбор категорий</h2>
+<p>Эти функции работают только после входа и твоего явного согласия в приложении. Когда ты задаёшь вопрос, приложение отправляет через сервер в <strong>Anthropic, PBC</strong> (США, Claude API) сам вопрос и найденные по нему операции: даты, суммы, названия контрагентов, назначение платежа, а также сохранённые тобой факты «что ассистент помнит». Сервер передаёт это транзитом и не сохраняет. По условиям коммерческого API Anthropic данные не используются для обучения моделей и удаляются у Anthropic в установленные ими сроки (по умолчанию до 30 дней). Передача в США происходит на основании стандартных договорных условий (SCC) в соглашении с Anthropic. Ты можешь не включать ИИ — остальные функции работают без него.</p>
+
+<h2>Подключение банков (PayPal, Sparkasse и другие)</h2>
+<p>Подключение идёт через <strong>Enable Banking Oy</strong> (Otakaari 5, 02150 Espoo, Финляндия) — лицензированного провайдера информации о счетах (AISP) под надзором финского регулятора FIN-FSA. Согласие ты даёшь в своём банке; оно действует не дольше 90 дней и может быть отозвано в банке или в приложении («Подключённые счета → Отключить»). Операции, которые отдаёт банк, сервер передаёт на твой телефон <strong>транзитом, не сохраняя</strong>. Политика Enable Banking: <a href="https://enablebanking.com/privacy">enablebanking.com/privacy</a>.</p>
+
+<h2>Импорт PDF-выписок, распознавание писем о долгах</h2>
+<p>PDF-выписки разбираются на телефоне. Письма о долгах распознаются на телефоне (Vision OCR); извлечение полей с помощью ИИ — только при включённом ассистенте и отправляет текст письма в Anthropic так же, как описано выше. Поиск e-mail коллектора открывает сайт коллектора с твоего телефона.</p>
+
+<h2>Уведомления, Face ID, Siri и виджет</h2>
+<p>Уведомления локальные (сервер их не шлёт). Face ID/код проверяет сама iOS, приложение биометрию не получает. Виджет и команда Siri читают данные только на устройстве.</p>
+
+<h2>Твои права</h2>
+<p>Ты можешь в любой момент: удалить аккаунт на сервере («Ещё → Аккаунт → Удалить аккаунт» — удаляются вход, токены, банковские сессии; счётчики расходов обезличиваются), удалить все данные на телефоне («Ещё → Удалить все данные»), выгрузить данные («Ещё → Резервная копия и экспорт»: JSON и CSV). По GDPR у тебя есть право на доступ, исправление, удаление, ограничение обработки, переносимость и возражение, а также право подать жалобу надзорному органу (для NRW — Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen). Запросы — на e-mail выше.</p>
+
+<h2>Дети</h2>
+<p>Приложение не предназначено для лиц младше 16 лет.</p>
+
+<hr>
+
+<h1 id="de">Datenschutzerklärung der App „Budget“</h1>
+<p><small>Stand: 16. Oktober 2026. Die App befindet sich im geschlossenen Betatest (TestFlight).</small></p>
+
+<h2>Verantwortlicher</h2>
+<p>Korolov IT-Service, Inh. Viacheslav Korolov, Stegerwaldstraße 14, 51373 Leverkusen, Deutschland. E-Mail: <a href="mailto:info@korolov-it-service.de">info@korolov-it-service.de</a>.</p>
+
+<h2>Das Wichtigste</h2>
+<ul>
+<li>Deine Finanzdaten (Umsätze, Budgets, Schulden, Assistenten-Chats, Berichte) werden <strong>auf deinem iPhone</strong> gespeichert und – falls du die Synchronisierung einschaltest – in <strong>deiner persönlichen iCloud</strong> (private CloudKit-Datenbank, nur für deine Apple-ID zugänglich).</li>
+<li>Auf dem Server der App liegen <strong>keine Finanzdaten</strong>. Der Server dient nur der Anmeldung, dem KI-Assistenten und der Bankanbindung.</li>
+<li>Es gibt kein Tracking, keine Werbung und keinen Datenverkauf.</li>
+</ul>
+
+<h2>Verarbeitung auf dem Server der App</h2>
+<p>Der Server (budget-api) wird in Deutschland betrieben (netcup GmbH, Nürnberg). Gespeichert werden ausschließlich: Apple-ID-Kennung und ggf. E-Mail, Tarif und Registrierungsdatum (Art. 6 Abs. 1 lit. b DSGVO – Vertragsdurchführung); gehashte Sitzungstoken und Gerätename; Zähler der KI-Anfragen (Datum, Modell, Token, Kosten – <strong>ohne Inhalte</strong>); Kennungen der Enable-Banking-Sitzungen und -Konten, maskierte IBAN, Bankname, Gültigkeit der Einwilligung und tägliche Abrufzähler. Serverprotokolle (Pfad, Statuscode, Zeit, Nutzerkennung, ohne Inhalte) werden bis zu 30 Tage aufbewahrt (Art. 6 Abs. 1 lit. f DSGVO – Sicherheit und Missbrauchsabwehr).</p>
+
+<h2>KI-Assistent, Bericht, Kategorisierung</h2>
+<p>Nur nach Anmeldung und ausdrücklicher Einwilligung in der App (Art. 6 Abs. 1 lit. a DSGVO). Deine Frage und die dazu gefundenen Umsätze (Datum, Betrag, Gegenpartei, Verwendungszweck) sowie von dir gespeicherte Fakten werden über den Server an <strong>Anthropic, PBC</strong> (USA, Claude API) übermittelt; der Server leitet sie nur durch und speichert sie nicht. Nach den kommerziellen API-Bedingungen von Anthropic werden die Daten nicht zum Training von Modellen verwendet und innerhalb der dort festgelegten Fristen gelöscht (standardmäßig bis zu 30 Tage). Die Übermittlung in die USA erfolgt auf Grundlage von Standardvertragsklauseln (SCC). Die Einwilligung kann jederzeit widerrufen werden; die übrigen Funktionen arbeiten ohne KI.</p>
+
+<h2>Bankanbindung</h2>
+<p>Die Anbindung erfolgt über <strong>Enable Banking Oy</strong> (Otakaari 5, 02150 Espoo, Finnland), einen bei der finnischen Finanzaufsicht FIN-FSA registrierten Kontoinformationsdienstleister (AISP). Die Einwilligung erteilst du bei deiner Bank (max. 90 Tage) und kannst sie jederzeit bei der Bank oder in der App widerrufen. Vom Server werden die Umsätze <strong>nur durchgeleitet, nicht gespeichert</strong>. Datenschutzhinweise von Enable Banking: <a href="https://enablebanking.com/privacy">enablebanking.com/privacy</a>.</p>
+
+<h2>Deine Rechte</h2>
+<p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch (Art. 15–21 DSGVO) sowie auf Beschwerde bei einer Aufsichtsbehörde (für NRW: Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen). In der App: Konto löschen („Mehr → Konto → Konto löschen“), alle Daten auf dem Gerät löschen, Export (JSON/CSV). Anfragen an die oben genannte E-Mail-Adresse.</p>
+
+<h2>Kinder</h2>
+<p>Die App richtet sich nicht an Personen unter 16 Jahren.</p>
+</body></html>
